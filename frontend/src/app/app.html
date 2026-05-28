@@ -1,0 +1,61 @@
+<h1 style="text-align: center; color: #333; font-family: Arial, sans-serif; margin-top: 20px;">Mi Dashboard Angular</h1>
+
+<div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; padding: 20px; align-items: flex-start;">
+
+  <div style="flex: 1; min-width: 400px; max-width: 500px; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: white;">
+    <h2 style="text-align: center; color: #333;">Laboratorio de Notas</h2>
+    
+    <form (ngSubmit)="enviarDatos()">
+      <div style="margin-bottom: 10px;">
+        <label>Código del Estudiante:</label><br>
+        <input type="text" [(ngModel)]="estudiante.codigoEstudiante" name="codigo" required style="width: 100%; padding: 5px;">
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label>Nombres Completos:</label><br>
+        <input type="text" [(ngModel)]="estudiante.nombres" name="nombres" required style="width: 100%; padding: 5px;">
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <div style="width: 22%;">
+          <label>Nota 1:</label>
+          <input type="number" [(ngModel)]="estudiante.nota1" name="nota1" required style="width: 100%; padding: 5px;">
+        </div>
+        <div style="width: 22%;">
+          <label>Nota 2:</label>
+          <input type="number" [(ngModel)]="estudiante.nota2" name="nota2" required style="width: 100%; padding: 5px;">
+        </div>
+        <div style="width: 22%;">
+          <label>Nota 3:</label>
+          <input type="number" [(ngModel)]="estudiante.nota3" name="nota3" required style="width: 100%; padding: 5px;">
+        </div>
+        <div style="width: 22%;">
+          <label>Nota 4:</label>
+          <input type="number" [(ngModel)]="estudiante.nota4" name="nota4" required style="width: 100%; padding: 5px;">
+        </div>
+      </div>
+
+      <button type="submit" style="width: 100%; padding: 10px; background-color: #0056b3; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Calcular Promedio
+      </button>
+    </form>
+
+    <div *ngIf="resultado" style="margin-top: 20px; padding: 15px; background-color: #e9ecef; border-radius: 5px;">
+      <h3 style="margin-top: 0; color: #0056b3;">Resultado del Servidor:</h3>
+      <p><strong>Estudiante:</strong> {{ resultado.nombres }} ({{ resultado.codigoEstudiante }})</p>
+      <p><strong>Suma de notas:</strong> {{ resultado.suma }}</p>
+      <p><strong>Promedio Final:</strong> {{ resultado.promedio }}</p>
+      <p><strong>Estado Académico:</strong> 
+        <span [style.color]="resultado.estado === 'Aprobado' ? 'green' : 'red'">
+          <b>{{ resultado.estado }}</b>
+        </span>
+      </p>
+      <p><strong>Observación:</strong> {{ resultado.observacion }}</p>
+    </div>
+  </div>
+
+  <div style="flex: 1; min-width: 400px; max-width: 500px;">
+    <app-imc></app-imc>
+  </div>
+
+</div>
